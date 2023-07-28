@@ -1,6 +1,6 @@
 package dtnl.chronowar.Data.buildings;
 
-public class house_1 {
+public class goldmine {
 
     public static int max = 2;
 

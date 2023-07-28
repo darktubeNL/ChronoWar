@@ -1,7 +1,6 @@
 package dtnl.chronowar.Events;
 
 import dtnl.chronowar.ChronoWar;
-import dtnl.chronowar.Data.PlayerDataset;
 import dtnl.chronowar.DataManagers.PlayerData;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,6 +19,7 @@ public class JoinEvent implements Listener {
         if(!PlayerData.IsPlayer(e.getPlayer().getUniqueId())){
             PlayerData.CreatePlayer(uuid);
         }
+        //no data loaded yet
         if(!ChronoWar.playerdata.containsKey(uuid)){
             YamlFile data = (YamlFile) PlayerData.getfile(uuid);
 
