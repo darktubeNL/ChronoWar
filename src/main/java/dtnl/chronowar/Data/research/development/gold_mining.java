@@ -1,9 +1,9 @@
-package dtnl.chronowar.Data.research;
+package dtnl.chronowar.Data.research.development;
 
-public class food_gathering {
+public class gold_mining {
 
     public static int max = 2;
-    //boost food gathering
+    //boost metal gathering
     public static int power(int level) {
         switch (level) {
             case 1:
@@ -22,6 +22,18 @@ public class food_gathering {
                 return 20;
             default:
                 return 0;
+        }
+    }
+
+    public static String cost(int level) {
+        //return food.wood.metal.gold
+        switch (level) {
+            case 1:
+                return "130.0.0.0";
+            case 2:
+                return "340.230.60.120";
+            default:
+                return "0.0.0.0";
         }
     }
 }

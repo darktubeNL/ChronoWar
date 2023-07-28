@@ -1,4 +1,4 @@
-package dtnl.chronowar.Data.research;
+package dtnl.chronowar.Data.research.development;
 
 public class wood_chopping {
 
@@ -22,6 +22,18 @@ public class wood_chopping {
                 return 20;
             default:
                 return 0;
+        }
+    }
+
+    public static String cost(int level) {
+        //return food.wood.metal.gold
+        switch (level) {
+            case 1:
+                return "130.0.0.0";
+            case 2:
+                return "340.230.60.120";
+            default:
+                return "0.0.0.0";
         }
     }
 }
