@@ -1,6 +1,7 @@
 package dtnl.chronowar;
 
 public class Toolbox {
+
     public static int GetResource(String list, String type){
         String[] values = list.split("\\.");
         switch (type){
