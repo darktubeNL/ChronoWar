@@ -2,3 +2,5 @@ name: ChronoWar
 version: '${project.version}'
 main: dtnl.chronowar.ChronoWar
 api-version: 1.20
+commands:
+  test:

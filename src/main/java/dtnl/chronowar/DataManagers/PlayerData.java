@@ -1,5 +1,6 @@
 package dtnl.chronowar.DataManagers;
 
+import java.io.IOException;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -16,17 +17,31 @@ public class PlayerData {
         return yml.exists();
     }
 
-    public static Object getfile(UUID uuid){
+    public static YamlFile getloadedfile(UUID uuid){
         YamlFile yml = getfile(uuid.toString());
         try {
             if (!yml.exists()) {
-                return false;
+                return null;
             } else {
+                yml.load();
                 return yml;
             }
         } catch (Exception ignored) {}
-        return false;
+        return null;
     }
+    public static void updatefile(UUID uuid, YamlFile data){
+        String player = uuid.toString();
+        YamlFile yml = getfile(player);
+        try {
+            if(!yml.exists()){
+                yml.createNewFile();
+            }
+            yml.load();
+        } catch (Exception ignored) {}
+        yml = data;
+        try { yml.save(); } catch (IOException ignored) {}
+    }
+
     public static int Getvalue(UUID uuid, String value){
         YamlFile yml = getfile(uuid.toString());
         try {
@@ -53,12 +68,25 @@ public class PlayerData {
         } catch (Exception ignored) {}
         yml.set("general.level", 1);
         yml.set("general.elitelevel", 1);
+        yml.set("general.food", 0.0);
+        yml.set("general.wood", 0.0);
+        yml.set("general.metal", 0.0);
+        yml.set("general.gold", 0.0);
+
         yml.set("units.lvl1", 0);
         yml.set("units.lvl2", 0);
         yml.set("units.lvl3", 0);
         yml.set("units.lvl4", 0);
         yml.set("units.lvl5", 0);
         yml.set("units.lvl6", 0);
+
+        yml.set("buildings.radio_tower", 0);
+        yml.set("buildings.Barracks", 0);
+        yml.set("buildings.house", 0);
+        yml.set("buildings.foodfarm", 0);
+        yml.set("buildings.woodfarm", 0);
+        yml.set("buildings.metalmine", 0);
+        yml.set("buildings.goldmine", 0);
 
         yml.set("research.development.wood_chopping", 0);
         yml.set("research.development.food_gathering", 0);
@@ -69,8 +97,13 @@ public class PlayerData {
         yml.set("research.basic_combat.attack_tactics", 0);
         yml.set("research.basic_combat.defence_tactics", 0);
         yml.set("research.basic_combat.health_tactics", 0);
-        yml.set("research.basic_combat.attack_tactics_defending", 0);
-        yml.set("research.basic_combat.defence_tactics_defending", 0);
-        yml.set("research.basic_combat.health_tactics_defending", 0);
+
+        yml.set("comanders.gideon.level", 0);
+        yml.set("comanders.gideon.xp", 0);
+        yml.set("comanders.gideon.skill1", 0);
+        yml.set("comanders.gideon.skill2", 0);
+        yml.set("comanders.gideon.skill3", 0);
+
+        try { yml.save(); } catch (IOException ignored) {}
     }
 }
